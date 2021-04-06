@@ -19,8 +19,8 @@ module.exports = {
         amd: 'React',
         root: 'react'
       },
-      'socket.io-client': 'commonjs socket.io-client',
-      '@material-ui/core': 'commonjs @material-ui/core',
+      'socket.io-client': 'commonjs2 socket.io-client',
+      '@material-ui/core': 'commonjs2 @material-ui/core',
     },
     plugins: [ ],
     module: {
