@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { BaseViewer } from './BaseViewer';
 
 export const GalleryViewer = (props) => {
@@ -8,7 +7,7 @@ export const GalleryViewer = (props) => {
 
   return (
     <BaseViewer onClose={props.onClose} >
-      <div>PDF!</div>
+      <div>Not Implemented</div>
     </BaseViewer>
   )
 }

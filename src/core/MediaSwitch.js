@@ -3,7 +3,7 @@ import { MediaSyncContext, MediaSync } from './sync';
 
 export const MediaSwitch = (props) => {
   return (
-    <MediaSync>
+    <MediaSync room={props.room || 'synced-media-room'}>
       <MediaSyncContext.Consumer>
         {sync => {
           let match, element;

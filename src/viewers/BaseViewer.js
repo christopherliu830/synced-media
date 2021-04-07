@@ -1,89 +1,33 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-import {
-  Button,
-  makeStyles
-} from '@material-ui/core';
+// import {
+//   Button,
+//   makeStyles
+// } from '@material-ui/core';
 import { useSyncedMedia } from '../core/sync';
 
-const useStyles = makeStyles(() => ({
-  root: {
-    color: 'white',
-    background: 'black',
-    flexFlow: 'column nowrap',
-    position: 'fixed',
-    display: 'flex',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-  },
-  topBar: {
-    display: 'flex',
-    flex: '0 0 2rem',
-    backgroundColor: 'rgba(0, 0, 0, 0.4)',
-  },
-  closeButton: {
-    marginLeft: 'auto',
-  },
-  button: {
-    color: 'white',
-    background: 'black',
-    borderRadius: 0,
-  },
-  body: {
-    flex: '1 1 auto',
-    width: '100%', 
-    minHeight: 0,
-    display: 'flex',
-    alignItems: 'stretch',
-  },
-  container: {
-    width: '100%',
-    display: 'flex',
-    flexFlow: 'row nowrap',
-    alignItems: 'center',
-    justifyContent: 'center',
-    minWidth: 0,
-    overflow: 'scroll',
-  }
-}))
 
-const StyledButton = (props) => {
-  const classes = useStyles();
+const Button = (props) => {
   return (
-    <Button 
-      classes={{
-        root: classes.button
-      }}
-      {...props} 
-    />
+    <button className="synced-media--button" {...props} />
   )
 }
 
 export const BaseViewer = (props) => {
-  const classes = useStyles();
+  const classes = {};
   return (
-    <div id="synced-media-viewer" className={classes.root}>
-      <div className={classes.topBar}>
-        <StyledButton onClick={props.onRotate}>Rotate</StyledButton>
-        <StyledButton onClick={props.onClose} className={classes.closeButton}>Close</StyledButton>
+    <div className="synced-media--root">
+      <div className="synced-media--header">
+        <Button onClick={props.onRotate}>Rotate</Button>
+        <Button onClick={props.onClose} >Close</Button>
       </div>
-      <div className={classes.body}>
-        <StyledButton onClick={props.onLeft}>L</StyledButton>
-        <div className={classes.container}>
+      <div className="synced-media--body">
+        <Button onClick={props.onLeft}>L</Button>
+        <div className="synced-media--container">
           { React.Children.only(props.children) }
         </div>
-        <StyledButton onClick={props.onRight}>R</StyledButton>
+        <Button onClick={props.onRight}>R</Button>
       </div>
     </div>
   );
 };
-
-BaseViewer.propTypes = {
-  onLeft: PropTypes.func,
-  onRight: PropTypes.func,
-  onClose: PropTypes.func,
-  onRotate: PropTypes.func,
-}

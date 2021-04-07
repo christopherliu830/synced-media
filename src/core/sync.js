@@ -19,11 +19,11 @@ export const MediaSync = (props) => {
 
   useEffect(() => {
     if (socket) {
-      const logger = (...args) => console.log('synced-media', args);
+      console.log(props.room);
+      socket.emit(actions.JOIN, props.room);
       socket.on(actions.OPEN, handleOpen);
       socket.on(actions.CLOSE, handleClose);
       return () => {
-        socket.offAny(logger);
         socket.off(actions.OPEN, handleOpen)
         socket.off(actions.CLOSE, handleClose);
       }

@@ -12,16 +12,16 @@ module.exports = {
           type: 'umd',
         }
     },
-    externals: {
-      react: {
-        commonjs: 'react',
-        commonjs2: 'react',
-        amd: 'React',
-        root: 'react'
+    externals: [
+      {
+        react: {
+          commonjs: 'react',
+          commonjs2: 'react',
+          amd: 'React',
+          root: 'React'
+        },
       },
-      'socket.io-client': 'commonjs2 socket.io-client',
-      '@material-ui/core': 'commonjs2 @material-ui/core',
-    },
+    ],
     plugins: [ ],
     module: {
         rules: [
