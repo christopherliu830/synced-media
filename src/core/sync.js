@@ -5,22 +5,30 @@ import * as actions from './action-types';
 export const MediaSyncContext = React.createContext();
 
 export const MediaSync = (props) => {
-  const [ sync, setSync ] = React.useState({}); 
   const [ socket ] = React.useState(Socket);
+  const dispatch = socket.emit.bind(socket);
 
-  const handleOpen = (p) => {
-    setSync((old) => ({ ...old, ...p }));
+  const [ sync, setSync ] = React.useState({ dispatch }); 
+
+  const handleOpen = (state) => {
+    setSync({...state, dispatch});
   }
   
   const handleClose = () => {
     // Clear state
-    setSync({});
+    setSync({ });
+  }
+
+  const handleStateUpdate = (newState) => {
+    setSync(oldState => ({...oldState, ...newState, dispatch}));
   }
 
   useEffect(() => {
     if (socket) {
       console.log(props.room);
       socket.emit(actions.JOIN, props.room);
+      socket.emit(actions.CLAIM_HOST, true);
+      socket.on(actions.SET_STATE, handleStateUpdate);
       socket.on(actions.OPEN, handleOpen);
       socket.on(actions.CLOSE, handleClose);
       return () => {

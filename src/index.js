@@ -1,10 +1,11 @@
-import React from 'react';
 import { MediaSwitch } from './core/MediaSwitch';
 import { PDFViewer } from './viewers/PDFViewer';
 import { BaseViewer } from './viewers/BaseViewer';
 import { GalleryViewer } from './viewers/GalleryViewer';
 import socket from './core/socket';
 import * as actions from './core/action-types';
+
+import './styles/index.scss';
 
 /**
  * @param {Object} options

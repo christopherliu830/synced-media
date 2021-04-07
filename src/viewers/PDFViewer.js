@@ -11,7 +11,7 @@ export const PDFViewer = (props) => {
   const viewerRef = React.useRef();
   const [ viewer, setViewer ] = React.useState();
 
-  const { path } = props.sync;
+  const { path, page, dispatch } = props.sync;
 
   // Load PDF
   useEffect(() => {
@@ -26,6 +26,12 @@ export const PDFViewer = (props) => {
   }, [path, viewer])
 
   useEffect(() => {
+    if (page && viewer) {
+      viewer.currentPageNumber = page;
+    }
+  }, [page, viewer])
+
+  useEffect(() => {
     if (containerRef.current) {
       const viewer = new PDFJSViewer.PDFSinglePageViewer({
         container: containerRef.current,
@@ -37,7 +43,7 @@ export const PDFViewer = (props) => {
   }, [containerRef])
 
   const handleSetPage = (num) => {
-    viewer.currentPageNumber = num;
+    dispatch(actions.SET_STATE, {page: num})
   };
 
   return (

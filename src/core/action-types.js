@@ -15,3 +15,4 @@ export const SET_PAGE = 'synced-pdf-set-page';
 export const SET_ROTATION = 'synced-pdf-set-rotation';
 export const CATCHUP = 'synced-pdf-catchup';
 export const CLAIM_HOST = 'synced-pdf-claim-host';
+export const SET_STATE = 'synced-media-set-state';
